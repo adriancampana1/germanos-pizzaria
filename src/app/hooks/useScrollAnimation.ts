@@ -17,10 +17,10 @@ export default function useScrollAnimation() {
     if (children.length === 0) return;
 
     gsap.from(children, {
-      y: 50,
+      y: 40,
       opacity: 0,
-      stagger: 0.12,
-      duration: 0.9,
+      stagger: 0.15,
+      duration: 1,
       ease: "power3.out",
       scrollTrigger: {
         trigger: el,

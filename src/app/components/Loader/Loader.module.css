@@ -4,11 +4,9 @@
   z-index: 9998;
   background: var(--bg-light);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 2rem;
-  transition: opacity 0.6s ease, visibility 0.6s ease;
+  transition: opacity 0.8s ease, visibility 0.8s ease;
 }
 
 .hidden {
@@ -17,9 +15,22 @@
   pointer-events: none;
 }
 
+.center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  transition: transform 0.8s ease, opacity 0.8s ease;
+}
+
+.hidden .center {
+  transform: translateY(-20px);
+  opacity: 0;
+}
+
 .brand {
   font-family: var(--font-display);
-  font-size: 3rem;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
   font-weight: 300;
   font-style: italic;
   color: var(--text-primary);
@@ -27,25 +38,22 @@
 }
 
 .track {
-  width: 200px;
-  height: 2px;
+  width: 180px;
+  height: 1px;
   background: rgba(26, 20, 16, 0.1);
-  border-radius: 1px;
   overflow: hidden;
 }
 
 .bar {
   height: 100%;
   background: var(--accent);
-  border-radius: 1px;
-  transition: width 0.15s ease;
+  transition: width 0.2s ease;
 }
 
 .percent {
   font-family: var(--font-body);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 400;
   color: var(--text-muted);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  letter-spacing: 0.2em;
 }

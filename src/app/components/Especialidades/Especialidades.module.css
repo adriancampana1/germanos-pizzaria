@@ -1,104 +1,320 @@
 .section {
-  padding: 6rem 5vw;
+  padding: var(--section-pad);
   background: var(--bg-light);
+}
+
+.header {
+  max-width: var(--max-width);
+  margin: 0 auto 4rem;
 }
 
 .heading {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 400;
-  line-height: 1.05;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1;
   color: var(--text-primary);
-  letter-spacing: -0.02em;
-  margin-bottom: 3rem;
-  text-align: center;
+  letter-spacing: -0.03em;
 }
 
-.grid {
+.heading em {
+  font-style: italic;
+  color: var(--text-secondary);
+}
+
+/* ─── Editorial layout ─── */
+.editorial {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1.4fr 1fr;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: var(--max-width);
   margin: 0 auto;
+}
+
+/* ─── Featured pizza ─── */
+.featured {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-warm);
+}
+
+.featuredImage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+}
+
+.image {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.featured:hover .image {
+  transform: scale(1.04);
+}
+
+.featuredOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(10, 10, 10, 0.85) 0%,
+    rgba(10, 10, 10, 0.3) 40%,
+    transparent 70%
+  );
+  pointer-events: none;
+}
+
+.featuredInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  z-index: 2;
+}
+
+.featuredLabel {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  background: var(--accent);
+  padding: 0.4rem 0.9rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.featuredName {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+}
+
+.featuredDesc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.7;
+  max-width: 28rem;
+  margin-bottom: 1.5rem;
+}
+
+.featuredFooter {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.featuredPrice {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.orderBtn {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--white);
+  background: var(--accent);
+  padding: 0.8rem 1.8rem;
+  border-radius: 2px;
+  transition:
+    background 0.3s ease,
+    transform 0.3s ease;
+  min-height: 48px;
+}
+
+.orderBtn:hover {
+  background: var(--accent-hover);
+  transform: translateY(-2px);
+}
+
+/* ─── Secondary cards ─── */
+.secondary {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .card {
   background: var(--white);
   border-radius: 4px;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.08);
-}
-
-.cardImage {
+.cardImageWrap {
+  position: relative;
   width: 100%;
-  height: 220px;
-  object-fit: cover;
-  display: block;
+  aspect-ratio: 16 / 10;
   background: var(--bg-warm);
+  overflow: hidden;
 }
 
-.cardBody {
-  padding: 1.5rem;
+.card:hover .image {
+  transform: scale(1.06);
 }
 
-.cardName {
-  font-family: var(--font-display);
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin-bottom: 0.5rem;
-}
-
-.cardDesc {
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  font-weight: 300;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin-bottom: 1rem;
-}
-
-.cardFooter {
+.cardOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 10, 0.5);
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.cardPrice {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: var(--accent);
+.card:hover .cardOverlay {
+  opacity: 1;
 }
 
-.cardCta {
+.cardOrderBtn {
   font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--white);
-  background: var(--accent);
-  padding: 0.6rem 1.2rem;
-  transition: background 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  padding: 0.7rem 1.5rem;
+  border-radius: 2px;
+  transition:
+    background 0.3s ease,
+    border-color 0.3s ease;
   min-height: 48px;
   display: flex;
   align-items: center;
 }
 
-.cardCta:hover {
-  background: var(--accent-hover);
+.cardOrderBtn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
+.cardBody {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.cardTop {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cardName {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.cardPrice {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.cardDesc {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* ─── Cardápio completo CTA ─── */
+.menuCta {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding-top: 3.5rem;
+  text-align: center;
+}
+
+.menuCtaDivider {
+  width: 3rem;
+  height: 1px;
+  background: var(--text-muted);
+  margin: 0 auto 1.5rem;
+  opacity: 0.4;
+}
+
+.menuCtaText {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.menuCtaLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  text-decoration: none;
+  transition: gap 0.3s ease;
+}
+
+.menuCtaLink:hover {
+  gap: 1rem;
+}
+
+.menuCtaLink svg {
+  transition: transform 0.3s ease;
+}
+
+.menuCtaLink:hover svg {
+  transform: translateX(4px);
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
+  .editorial {
+    grid-template-columns: 1fr;
+  }
+
+  .featuredImage {
+    aspect-ratio: 16 / 10;
+  }
+
+  .secondary {
+    flex-direction: row;
+  }
+
+  .card {
+    flex: 1;
   }
 }
 
@@ -107,8 +323,49 @@
     padding: 4rem 6vw;
   }
 
-  .grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  .header {
+    margin-bottom: 3rem;
+  }
+
+  .featuredImage {
+    aspect-ratio: 3 / 4;
+  }
+
+  .featuredInfo {
+    padding: 1.5rem;
+  }
+
+  .featuredName {
+    font-size: 2rem;
+  }
+
+  .featuredDesc {
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+  }
+
+  .featuredFooter {
+    gap: 1rem;
+  }
+
+  .featuredPrice {
+    font-size: 1.4rem;
+  }
+
+  .orderBtn {
+    padding: 0.7rem 1.4rem;
+    font-size: 0.65rem;
+  }
+
+  .secondary {
+    flex-direction: column;
+  }
+
+  .cardImageWrap {
+    aspect-ratio: 16 / 9;
+  }
+
+  .menuCtaLink {
+    font-size: 1.6rem;
   }
 }

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const FRAME_COUNT = 192;
+const FRAME_COUNT = 120;
 const FRAME_PATH = "/frames/frame_";
 const FRAME_EXT = ".webp";
 
@@ -26,7 +26,9 @@ export default function useFramePreloader() {
           framesRef.current[index] = img;
           loadedCountRef.current++;
           if (!cancelled) {
-            setProgress(Math.round((loadedCountRef.current / FRAME_COUNT) * 100));
+            setProgress(
+              Math.round((loadedCountRef.current / FRAME_COUNT) * 100),
+            );
           }
           resolve();
         };
@@ -64,7 +66,9 @@ export default function useFramePreloader() {
     }
 
     preload();
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return { framesRef, progress, isLoaded, frameCount: FRAME_COUNT };

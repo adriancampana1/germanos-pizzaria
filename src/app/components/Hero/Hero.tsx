@@ -56,10 +56,13 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
         <div className={styles.overlay} />
         <div className={styles.content} ref={contentRef}>
           <h1 className={styles.heading}>
-            Germano&apos;s<br />Pizzaria
+            Germano&apos;s
+            <br />
+            Pizzaria
           </h1>
           <p className={styles.tagline}>
-            Pizza artesanal assada no forno a lenha, com amor e tradi&ccedil;&atilde;o desde a primeira fatia.
+            Ingredientes de alta qualidade, preparados com cuidado e
+            paix&atilde;o desde a primeira fatia.
           </p>
           <a href="#cta" className={styles.ctaButton}>
             Pe&ccedil;a Agora

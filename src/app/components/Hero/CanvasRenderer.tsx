@@ -65,12 +65,25 @@ export default function CanvasRenderer({ framesRef, frameCount, progress }: Canv
 
   // Draw frame based on progress
   useEffect(() => {
-    const index = Math.min(Math.floor(progress * frameCount), frameCount - 1);
-    if (index >= 0 && index !== currentFrameRef.current && framesRef.current?.[index]) {
+    const index = Math.max(0, Math.min(Math.floor(progress * frameCount), frameCount - 1));
+    if (index !== currentFrameRef.current && framesRef.current?.[index]) {
       currentFrameRef.current = index;
       requestAnimationFrame(() => drawFrame(index));
     }
   }, [progress, frameCount, framesRef, drawFrame]);
+
+  // Draw first frame as soon as it's available
+  useEffect(() => {
+    if (currentFrameRef.current >= 0) return;
+    const checkFirst = setInterval(() => {
+      if (framesRef.current?.[0]) {
+        currentFrameRef.current = 0;
+        drawFrame(0);
+        clearInterval(checkFirst);
+      }
+    }, 50);
+    return () => clearInterval(checkFirst);
+  }, [framesRef, drawFrame]);
 
   return (
     <canvas

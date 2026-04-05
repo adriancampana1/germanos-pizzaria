@@ -22,6 +22,10 @@
   /* Typography */
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Outfit', system-ui, sans-serif;
+
+  /* Spacing */
+  --section-pad: clamp(5rem, 10vh, 8rem) 5vw;
+  --max-width: 1200px;
 }
 
 *, *::before, *::after {
@@ -76,12 +80,32 @@ html.lenis, html.lenis body {
 
 /* Shared section label style */
 .section-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   font-family: var(--font-body);
   font-size: 0.65rem;
   font-weight: 500;
   color: var(--accent);
-  letter-spacing: 0.2em;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   margin-bottom: 1.5rem;
+}
+
+.section-label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: var(--accent);
+}
+
+/* Dark variant */
+.section-label-dark {
+  composes: section-label;
+  color: rgba(245, 245, 220, 0.5);
+}
+
+.section-label-dark::before {
+  background: rgba(245, 245, 220, 0.3);
 }

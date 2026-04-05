@@ -1,68 +1,143 @@
 .section {
-  padding: 6rem 5vw;
+  position: relative;
+  padding: clamp(5rem, 12vh, 10rem) 5vw;
   background: var(--bg-dark);
   text-align: center;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind content */
+.bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      ellipse 60% 50% at 50% 40%,
+      rgba(0, 122, 51, 0.06) 0%,
+      transparent 70%
+    );
 }
 
 .inner {
-  max-width: 700px;
+  position: relative;
+  max-width: 900px;
   margin: 0 auto;
+}
+
+.label {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: rgba(245, 245, 220, 0.4);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.label::before {
+  content: '';
+  display: block;
+  width: 2rem;
+  height: 1px;
+  background: rgba(245, 245, 220, 0.2);
 }
 
 .heading {
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 6rem);
   font-weight: 300;
-  font-style: italic;
   line-height: 1.05;
   color: var(--text-on-dark);
   letter-spacing: -0.02em;
+  margin-bottom: 3.5rem;
+}
+
+.heading em {
+  font-style: italic;
+  color: rgba(245, 245, 220, 0.7);
+}
+
+/* ─── Two-path layout ─── */
+.paths {
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.pathCard {
+  flex: 1;
+  text-align: left;
+  padding: 2.5rem;
+  border: 1px solid rgba(245, 245, 220, 0.08);
+  border-radius: 4px;
+  transition: border-color 0.4s ease;
+}
+
+.pathCard:hover {
+  border-color: rgba(245, 245, 220, 0.18);
+}
+
+.pathLabel {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.pathDesc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(245, 245, 220, 0.55);
   margin-bottom: 1.5rem;
 }
 
-.body {
-  font-family: var(--font-body);
-  font-size: 1.1rem;
-  font-weight: 300;
-  line-height: 1.7;
-  color: rgba(245, 245, 220, 0.7);
-  margin-bottom: 0.8rem;
-}
-
-.proof {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 400;
-  color: var(--accent-warm);
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  margin-bottom: 2.5rem;
-}
-
-.buttons {
+.pathButtons {
   display: flex;
-  gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  gap: 0.75rem;
 }
 
+.pathDivider {
+  display: flex;
+  align-items: center;
+  padding: 0 0.5rem;
+}
+
+.pathDivider span {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-style: italic;
+  color: rgba(245, 245, 220, 0.25);
+}
+
+/* ─── Buttons ─── */
 .btnPrimary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   color: var(--white);
   background: var(--accent);
-  padding: 1.2rem 3rem;
-  border: none;
-  cursor: pointer;
+  padding: 1rem 2rem;
+  border-radius: 2px;
   transition: background 0.3s ease, transform 0.3s ease;
-  min-height: 56px;
+  min-height: 52px;
 }
 
 .btnPrimary:hover {
@@ -70,43 +145,98 @@
   transform: translateY(-2px);
 }
 
+.btnOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  color: var(--text-on-dark);
+  background: transparent;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(245, 245, 220, 0.2);
+  border-radius: 2px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+  min-height: 52px;
+}
+
+.btnOutline:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .btnSecondary {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
-  color: var(--text-on-dark);
-  background: transparent;
-  padding: 1rem 2.5rem;
-  border: 1px solid rgba(245, 245, 220, 0.3);
-  cursor: pointer;
-  transition: border-color 0.3s ease, color 0.3s ease;
-  min-height: 56px;
+  color: var(--bg-dark);
+  background: var(--text-on-dark);
+  padding: 1rem 2rem;
+  border-radius: 2px;
+  transition: background 0.3s ease, transform 0.3s ease;
+  min-height: 52px;
 }
 
 .btnSecondary:hover {
-  border-color: var(--accent);
-  color: var(--accent);
+  background: var(--white);
+  transform: translateY(-2px);
 }
 
+.btnSecondary svg {
+  transition: transform 0.3s ease;
+}
+
+.btnSecondary:hover svg {
+  transform: translateX(4px);
+}
+
+/* ─── Social proof ─── */
+.proof {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--accent-warm);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ─── Responsive ─── */
 @media (max-width: 768px) {
   .section {
     padding: 4rem 6vw;
   }
 
-  .buttons {
+  .paths {
     flex-direction: column;
-    align-items: stretch;
+    gap: 0;
+  }
+
+  .pathCard {
+    padding: 2rem;
+  }
+
+  .pathDivider {
+    justify-content: center;
+    padding: 1rem 0;
+  }
+
+  .pathButtons {
+    flex-direction: column;
   }
 
   .btnPrimary,
+  .btnOutline,
   .btnSecondary {
     justify-content: center;
-    text-align: center;
+    width: 100%;
   }
 }
