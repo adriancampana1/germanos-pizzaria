@@ -2,7 +2,7 @@ import styles from "./Footer.module.css";
 
 const WHATSAPP_LINK = "https://wa.me/5543999990000";
 const PHONE_LINK = "tel:+5543999990000";
-const IFOOD_LINK = "https://www.ifood.com.br";
+const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function Footer() {
   return (
@@ -46,7 +46,7 @@ export default function Footer() {
               (43) 99999-0000
             </a>
             <a
-              href={IFOOD_LINK}
+              href={MENU_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.footerLink}

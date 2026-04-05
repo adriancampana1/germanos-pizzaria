@@ -28,7 +28,7 @@ const PIZZAS = [
 
 const WHATSAPP_LINK =
   "https://wa.me/5543999990000?text=Olá! Gostaria de fazer um pedido.";
-const IFOOD_LINK = "https://www.ifood.com.br";
+const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function Especialidades() {
   const sectionRef = useScrollAnimation();
@@ -119,7 +119,7 @@ export default function Especialidades() {
         <div className={styles.menuCtaDivider} />
         <p className={styles.menuCtaText}>Quer ver todas as opções?</p>
         <a
-          href={IFOOD_LINK}
+          href={MENU_LINK}
           target="_blank"
           rel="noopener noreferrer"
           className={styles.menuCtaLink}

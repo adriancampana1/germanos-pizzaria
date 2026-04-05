@@ -64,7 +64,12 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
             Ingredientes de alta qualidade, preparados com cuidado e
             paix&atilde;o desde a primeira fatia.
           </p>
-          <a href="#cta" className={styles.ctaButton}>
+          <a
+            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.ctaButton}
+          >
             Pe&ccedil;a Agora
           </a>
         </div>

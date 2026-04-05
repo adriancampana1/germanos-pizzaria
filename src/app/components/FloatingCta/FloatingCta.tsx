@@ -11,8 +11,8 @@ export default function FloatingCta() {
 
   useEffect(() => {
     function onScroll() {
-      const heroHeight = window.innerHeight * 2;
-      setVisible(window.scrollY > heroHeight);
+      const threshold = window.innerHeight * 0.8;
+      setVisible(window.scrollY > threshold);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);

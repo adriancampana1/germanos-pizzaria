@@ -82,7 +82,12 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a href="#cta" className={styles.navCta}>
+          <a
+            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.navCta}
+          >
             Peça Agora
           </a>
         </nav>
@@ -111,7 +116,13 @@ export default function Header() {
               {link.label}
             </a>
           ))}
-          <a href="#cta" className={styles.mobileCta} onClick={closeMenu}>
+          <a
+            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles.mobileCta}
+            onClick={closeMenu}
+          >
             Peça Agora
           </a>
         </div>

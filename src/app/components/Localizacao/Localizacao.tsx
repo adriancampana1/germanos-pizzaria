@@ -25,7 +25,7 @@ export default function Localizacao() {
         </div>
         <div className={styles.info}>
           <span className="section-label" data-animate>
-            003 / Visite-nos
+            006 / Visite-nos
           </span>
           <h2 className={styles.heading} data-animate>
             Localização

@@ -57,7 +57,7 @@ export default function SobreNos() {
 
         <div className={styles.content}>
           <span className="section-label" data-animate>
-            002 / Nossa História
+            005 / Nossa História
           </span>
           <h2 className={styles.heading} data-animate>
             Tradição Que Se
@@ -88,6 +88,18 @@ export default function SobreNos() {
               <span className={styles.statLabel}>Anos de tradição</span>
             </div>
           </div>
+          <a href="#localizacao" className={styles.visitCta} data-animate>
+            Venha nos conhecer
+            <svg width="18" height="18" viewBox="0 0 20 20" fill="none">
+              <path
+                d="M4 10H16M16 10L11 5M16 10L11 15"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
         </div>
       </div>
     </section>

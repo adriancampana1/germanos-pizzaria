@@ -199,14 +199,53 @@
   transform: translateX(4px);
 }
 
-/* ─── Social proof ─── */
-.proof {
+/* ─── Payment methods ─── */
+.payment {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.paymentLabel {
   font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 400;
-  color: var(--accent-warm);
-  letter-spacing: 0.12em;
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
+  color: rgba(245, 245, 220, 0.3);
+}
+
+.paymentMethods {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.paymentBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: rgba(245, 245, 220, 0.45);
+  letter-spacing: 0.04em;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid rgba(245, 245, 220, 0.08);
+  border-radius: 50px;
+  transition: border-color 0.3s ease, color 0.3s ease;
+}
+
+.paymentBadge:hover {
+  border-color: rgba(245, 245, 220, 0.2);
+  color: rgba(245, 245, 220, 0.65);
+}
+
+.paymentBadge svg {
+  opacity: 0.6;
 }
 
 /* ─── Responsive ─── */
