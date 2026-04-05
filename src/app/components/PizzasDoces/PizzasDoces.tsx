@@ -12,10 +12,10 @@ const DOCES = [
     image: "/images/confeti.png",
   },
   {
-    name: "Banana Nevada",
-    desc: "Creme de leite, mussarela, Banana, canela, chocolate branco",
+    name: "Dois amores",
+    desc: "Chocolate ao leite, chocolate branco e morango",
     price: "R$ 42,90",
-    image: "/images/banana-nevada.png",
+    image: "/images/dois-amores.png",
   },
   {
     name: "Ouro Branco",
