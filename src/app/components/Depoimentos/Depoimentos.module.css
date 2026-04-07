@@ -2,11 +2,113 @@
   padding: var(--section-pad);
   background: var(--bg-dark);
   overflow: hidden;
+  position: relative;
+}
+
+/* ─── Sketch background elements ─── */
+.sketchBg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sketchEl {
+  position: absolute;
+  color: rgba(245, 245, 220, 0.2);
+}
+
+.sketchSlice1 {
+  width: 120px;
+  top: 5%;
+  right: 8%;
+  transform: rotate(15deg);
+}
+
+.sketchLeaf1 {
+  width: 55px;
+  top: 40%;
+  left: 3%;
+  transform: rotate(-20deg);
+}
+
+.sketchOlive1 {
+  width: 40px;
+  bottom: 12%;
+  left: 15%;
+  transform: rotate(10deg);
+}
+
+.sketchSlice2 {
+  width: 90px;
+  bottom: 8%;
+  right: 5%;
+  transform: rotate(-25deg);
+}
+
+.sketchMushroom {
+  width: 50px;
+  top: 8%;
+  left: 12%;
+  transform: rotate(5deg);
+}
+
+.sketchPepper {
+  width: 30px;
+  top: 55%;
+  right: 3%;
+  transform: rotate(20deg);
+}
+
+.sketchSlice3 {
+  width: 100px;
+  top: 30%;
+  left: 1%;
+  transform: rotate(-40deg);
+}
+
+.sketchSlice4 {
+  width: 75px;
+  top: 2%;
+  left: 42%;
+  transform: rotate(30deg);
+}
+
+.sketchSlice5 {
+  width: 110px;
+  bottom: 3%;
+  left: 40%;
+  transform: rotate(160deg);
+}
+
+.sketchSlice6 {
+  width: 70px;
+  bottom: 25%;
+  left: 5%;
+  transform: rotate(-55deg);
+}
+
+.sketchSlice7 {
+  width: 85px;
+  top: 25%;
+  right: 1%;
+  transform: rotate(45deg);
+}
+
+.sketchDots {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: rgba(245, 245, 220, 0.025);
 }
 
 .inner {
   max-width: var(--max-width);
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* ─── Header with rating ─── */
@@ -195,6 +297,42 @@
 }
 
 @media (max-width: 768px) {
+  .sketchBg {
+    opacity: 0.6;
+  }
+
+  .sketchSlice1 {
+    width: 80px;
+  }
+
+  .sketchSlice2 {
+    width: 60px;
+  }
+
+  .sketchSlice3 {
+    width: 65px;
+  }
+
+  .sketchSlice4 {
+    width: 50px;
+  }
+
+  .sketchSlice5 {
+    width: 70px;
+  }
+
+  .sketchSlice6 {
+    display: none;
+  }
+
+  .sketchSlice7 {
+    width: 55px;
+  }
+
+  .sketchLeaf1 {
+    width: 40px;
+  }
+
   .section {
     padding: 4rem 6vw;
   }
