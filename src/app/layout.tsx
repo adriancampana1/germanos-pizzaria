@@ -18,23 +18,46 @@ const outfit = Outfit({
 });
 
 export const metadata: Metadata = {
-  title: "Germano's Pizzaria — Pizza Artesanal em Ibipor\u00e3, PR",
+  metadataBase: new URL("https://germanospizzaria.com.br"),
+  alternates: {
+    canonical: "/",
+  },
+  title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
   description:
-    "A melhor pizza artesanal de Ibipor\u00e3, Paran\u00e1. Forno a lenha, massa artesanal e ingredientes selecionados. Pe\u00e7a pelo WhatsApp ou iFood. Av. Senador Souza Naves, 685.",
+    "A melhor pizza artesanal de Ibiporã, Paraná. Forno a lenha, massa artesanal e ingredientes selecionados. Peça pelo WhatsApp ou iFood. Av. Senador Souza Naves, 685.",
   keywords: [
-    "pizzaria Ibipor\u00e3",
+    "pizzaria Ibiporã",
     "pizza artesanal",
     "Germano's Pizzaria",
     "pizza forno a lenha",
-    "delivery pizza Ibipor\u00e3",
-    "pizzaria Paran\u00e1",
+    "delivery pizza Ibiporã",
+    "pizzaria Paraná",
+    "melhor pizza Ibiporã",
+    "pizzaria perto de mim",
   ],
   openGraph: {
-    title: "Germano's Pizzaria — Pizza Artesanal em Ibipor\u00e3, PR",
+    title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
     description:
-      "A melhor pizza artesanal de Ibipor\u00e3. Forno a lenha, massa artesanal e ingredientes selecionados.",
+      "A melhor pizza artesanal de Ibiporã. Forno a lenha, massa artesanal e ingredientes selecionados.",
+    url: "https://germanospizzaria.com.br",
+    siteName: "Germano's Pizzaria",
     type: "website",
     locale: "pt_BR",
+    images: [
+      {
+        url: "/images/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Germano's Pizzaria — Pizza Artesanal em Ibiporã",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
+    description:
+      "A melhor pizza artesanal de Ibiporã. Forno a lenha, massa artesanal e ingredientes selecionados.",
+    images: ["/images/og-image.jpg"],
   },
 };
 
@@ -42,17 +65,52 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   name: "Germano's Pizzaria",
+  description:
+    "A melhor pizza artesanal de Ibiporã, Paraná. Forno a lenha, massa artesanal e ingredientes selecionados.",
   servesCuisine: ["Pizza", "Italian"],
+  image: "https://germanospizzaria.com.br/images/og-image.jpg",
+  url: "https://germanospizzaria.com.br",
+  telephone: "+55-43-99999-0000",
+  priceRange: "$$",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Av. Senador Souza Naves, 685",
-    addressLocality: "Ibipor\u00e3",
+    addressLocality: "Ibiporã",
     addressRegion: "PR",
+    postalCode: "86200-000",
     addressCountry: "BR",
   },
-  telephone: "+55-43-99999-0000",
-  url: "https://germanospizzaria.com.br",
-  priceRange: "$$",
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: -23.27,
+    longitude: -51.048,
+  },
+  hasMap: "https://maps.google.com/?q=Germanos+Pizzaria+Ibipora",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+      ],
+      opens: "18:00",
+      closes: "23:00",
+    },
+  ],
+  menu: "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora",
+  acceptsReservations: "No",
+  paymentAccepted: "Cash, Credit Card, Debit Card, Pix",
+  currenciesAccepted: "BRL",
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "4.9",
+    reviewCount: "40",
+    bestRating: "5",
+  },
 };
 
 export default function RootLayout({

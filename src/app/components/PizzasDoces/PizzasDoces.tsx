@@ -8,25 +8,22 @@ const DOCES = [
   {
     name: "Confeti",
     desc: "Creme de leite, mussarela, chocolate ao leite e confeti",
-    price: "R$ 44,90",
-    image: "/images/confeti.png",
+    image: "/images/confeti.webp",
   },
   {
     name: "Dois amores",
     desc: "Chocolate ao leite, chocolate branco e morango",
-    price: "R$ 42,90",
-    image: "/images/dois-amores.png",
+    image: "/images/dois-amores.webp",
   },
   {
     name: "Ouro Branco",
     desc: "Creme de leite, mussarela, chocolate ao leite, chocolate branco, bombom ouro branco",
-    price: "R$ 46,90",
-    image: "/images/ouro-branco.png",
+    image: "/images/ouro-branco.webp",
   },
 ];
 
 const WHATSAPP_LINK =
-  "https://wa.me/5543999990000?text=Olá! Gostaria de fazer um pedido.";
+  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
 const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function PizzasDoces() {
@@ -75,7 +72,6 @@ export default function PizzasDoces() {
               <div className={styles.cardBody}>
                 <div className={styles.cardTop}>
                   <h3 className={styles.cardName}>{pizza.name}</h3>
-                  <span className={styles.cardPrice}>{pizza.price}</span>
                 </div>
                 <p className={styles.cardDesc}>{pizza.desc}</p>
               </div>

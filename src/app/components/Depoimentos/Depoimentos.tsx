@@ -5,20 +5,20 @@ import styles from "./Depoimentos.module.css";
 
 const TESTIMONIALS = [
   {
-    name: "Mariana S.",
-    text: "Melhor pizza de Ibipora, sem duvida. A massa e fininha e crocante, os ingredientes sao sempre frescos. Ja virou tradicao aqui em casa toda sexta-feira!",
+    name: "Lucas de Souza",
+    text: "Pizzas deliciosas e beeem recheadas, com certeza 5 estrelas.",
     rating: 5,
     source: "Google",
   },
   {
-    name: "Rafael C.",
-    text: "Pedi pelo WhatsApp e chegou super rapido. A pizza de bacon especial e absurda de boa. Atendimento nota 10, sempre muito atenciosos.",
+    name: "Jo Jo",
+    text: "Muito boa mesmo eu achei a melhor da cidade. Excelente",
     rating: 5,
     source: "Google",
   },
   {
-    name: "Juliana M.",
-    text: "Ambiente aconchegante e pizza de qualidade. A Marguerita e a melhor que ja comi na regiao. Parabens ao Germano e toda equipe!",
+    name: "Vinicius Leite",
+    text: "Pizza com ótimo recheio, na medida certa, massa gostosa!! Ótima qualidade, parabéns.",
     rating: 5,
     source: "Google",
   },

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const FRAME_COUNT = 120;
+const FRAME_COUNT = 61;
 const FRAME_PATH = "/frames/frame_";
 const FRAME_EXT = ".webp";
 

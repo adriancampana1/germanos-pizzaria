@@ -44,7 +44,7 @@ export default function SobreNos() {
           <div className={styles.imageWrapper}>
             <div className={styles.parallaxInner} ref={parallaxImgRef}>
               <Image
-                src="/images/frente-pizzaria.png"
+                src="/images/frente-pizzaria.webp"
                 alt="Fachada da pizzaria Germano's"
                 fill
                 className={styles.image}

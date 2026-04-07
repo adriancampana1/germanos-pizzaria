@@ -8,26 +8,23 @@ const PIZZAS = [
   {
     name: "Marguerita",
     desc: "Molho, mussarela, tomate em rodelas, manjericão fresco e orégano.",
-    price: "R$ 44,90",
-    image: "/images/marguerita.png",
+    image: "/images/marguerita.webp",
     featured: true,
   },
   {
     name: "Bolonhesa",
     desc: "Molho, mussarela, carne moida, Parmesão, molho e orégano.",
-    price: "R$ 49,90",
-    image: "/images/bolonhesa.png",
+    image: "/images/bolonhesa.webp",
   },
   {
     name: "Bacon Especial",
     desc: "Molho, mussarela, bacon, tomate, ovos, requeijão cremoso e orégano.",
-    price: "R$ 54,90",
-    image: "/images/bacon.png",
+    image: "/images/bacon.webp",
   },
 ];
 
 const WHATSAPP_LINK =
-  "https://wa.me/5543999990000?text=Olá! Gostaria de fazer um pedido.";
+  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
 const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function Especialidades() {
@@ -66,7 +63,6 @@ export default function Especialidades() {
             <h3 className={styles.featuredName}>{featured.name}</h3>
             <p className={styles.featuredDesc}>{featured.desc}</p>
             <div className={styles.featuredFooter}>
-              <span className={styles.featuredPrice}>{featured.price}</span>
               <a
                 href={WHATSAPP_LINK}
                 target="_blank"
@@ -105,7 +101,6 @@ export default function Especialidades() {
               <div className={styles.cardBody}>
                 <div className={styles.cardTop}>
                   <h3 className={styles.cardName}>{pizza.name}</h3>
-                  <span className={styles.cardPrice}>{pizza.price}</span>
                 </div>
                 <p className={styles.cardDesc}>{pizza.desc}</p>
               </div>

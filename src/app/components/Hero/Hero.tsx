@@ -56,9 +56,11 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
         <div className={styles.overlay} />
         <div className={styles.content} ref={contentRef}>
           <h1 className={styles.heading}>
-            Germano&apos;s
+            Germano&apos;s Pizzaria
             <br />
-            Pizzaria
+            <span className={styles.headingSub}>
+              Pizza Artesanal em Ibiporã
+            </span>
           </h1>
           <p className={styles.tagline}>
             Ingredientes de alta qualidade, preparados com cuidado e

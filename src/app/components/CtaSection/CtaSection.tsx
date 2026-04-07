@@ -4,8 +4,8 @@ import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./CtaSection.module.css";
 
 const WHATSAPP_LINK =
-  "https://wa.me/5543999990000?text=Olá! Gostaria de fazer um pedido.";
-const PHONE_LINK = "tel:+5543999990000";
+  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
+const PHONE_LINK = "tel:+5543991593251";
 const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function CtaSection() {
@@ -62,7 +62,7 @@ export default function CtaSection() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                (43) 99999-0000
+                (43) 99159-3251
               </a>
             </div>
           </div>
@@ -103,7 +103,16 @@ export default function CtaSection() {
           <span className={styles.paymentLabel}>Formas de pagamento</span>
           <div className={styles.paymentMethods}>
             <span className={styles.paymentBadge}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <path d="M2 7h20v13a2 2 0 01-2 2H4a2 2 0 01-2-2V7z" />
                 <path d="M16 3l-4 4-4-4" />
                 <path d="M12 7V3" />
@@ -111,21 +120,48 @@ export default function CtaSection() {
               Pix
             </span>
             <span className={styles.paymentBadge}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
                 <line x1="1" y1="10" x2="23" y2="10" />
               </svg>
               Cr&eacute;dito
             </span>
             <span className={styles.paymentBadge}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <rect x="1" y="4" width="22" height="16" rx="2" ry="2" />
                 <line x1="1" y1="10" x2="23" y2="10" />
               </svg>
               D&eacute;bito
             </span>
             <span className={styles.paymentBadge}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
                 <line x1="12" y1="1" x2="12" y2="23" />
                 <path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" />
               </svg>

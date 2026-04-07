@@ -3,8 +3,9 @@
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./Localizacao.module.css";
 
-const WHATSAPP_LINK = "https://wa.me/5543999990000";
-const PHONE = "(43) 99999-0000";
+const WHATSAPP_LINK =
+  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
+const PHONE = "(43) 99159-3251";
 const MAPS_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3661.5!2d-51.048!3d-23.27!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjPCsDE2JzEyLjAiUyA1McKwMDInNTMuMCJX!5e0!3m2!1spt-BR!2sbr!4v1";
 
