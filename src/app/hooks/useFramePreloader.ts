@@ -11,7 +11,7 @@ function frameSrc(index: number): string {
 }
 
 export default function useFramePreloader() {
-  const framesRef = useRef<HTMLImageElement[]>([]);
+  const framesRef = useRef<ImageBitmap[]>([]);
   const [progress, setProgress] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
   const loadedCountRef = useRef(0);
@@ -22,8 +22,16 @@ export default function useFramePreloader() {
     function loadImage(index: number): Promise<void> {
       return new Promise((resolve) => {
         const img = new Image();
-        img.onload = () => {
-          framesRef.current[index] = img;
+        img.onload = async () => {
+          try {
+            // createImageBitmap pre-decodes the image on a background thread
+            // This makes canvas drawImage nearly instant (no decode cost)
+            const bitmap = await createImageBitmap(img);
+            framesRef.current[index] = bitmap;
+          } catch {
+            // Fallback: store as-is (shouldn't happen but safety net)
+            framesRef.current[index] = img as unknown as ImageBitmap;
+          }
           loadedCountRef.current++;
           if (!cancelled) {
             setProgress(
@@ -49,8 +57,8 @@ export default function useFramePreloader() {
       await Promise.all(phase1);
       if (cancelled) return;
 
-      // Phase 2: remaining frames in batches of 20
-      const batchSize = 20;
+      // Phase 2: remaining frames in batches of 10 (smaller batches = less memory pressure)
+      const batchSize = 10;
       for (let start = 10; start < FRAME_COUNT; start += batchSize) {
         const batch: Promise<void>[] = [];
         for (let i = start; i < Math.min(start + batchSize, FRAME_COUNT); i++) {

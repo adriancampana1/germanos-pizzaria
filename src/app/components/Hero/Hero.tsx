@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CanvasRenderer from "./CanvasRenderer";
@@ -9,7 +9,7 @@ import styles from "./Hero.module.css";
 gsap.registerPlugin(ScrollTrigger);
 
 interface HeroProps {
-  framesRef: React.RefObject<HTMLImageElement[]>;
+  framesRef: React.RefObject<ImageBitmap[]>;
   frameCount: number;
   isLoaded: boolean;
 }
@@ -17,10 +17,13 @@ interface HeroProps {
 export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
   const outerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const [frameProgress, setFrameProgress] = useState(0);
+  const progressRef = useRef(0);
+  const canvasRendererRef = useRef<{ setProgress: (p: number) => void }>(null);
 
   useEffect(() => {
     if (!isLoaded || !outerRef.current || !contentRef.current) return;
+
+    const contentEl = contentRef.current;
 
     const trigger = ScrollTrigger.create({
       trigger: outerRef.current,
@@ -28,15 +31,14 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
       end: "bottom bottom",
       scrub: true,
       onUpdate: (self) => {
-        setFrameProgress(self.progress);
+        progressRef.current = self.progress;
+        canvasRendererRef.current?.setProgress(self.progress);
 
         // Parallax: text moves up faster than scroll
-        if (contentRef.current) {
-          const yOffset = self.progress * -30; // vh units
-          const opacity = Math.max(0, 1 - self.progress * 1.5);
-          contentRef.current.style.transform = `translateY(${yOffset}vh)`;
-          contentRef.current.style.opacity = String(opacity);
-        }
+        const yOffset = self.progress * -30;
+        const opacity = Math.max(0, 1 - self.progress * 1.5);
+        contentEl.style.transform = `translateY(${yOffset}vh)`;
+        contentEl.style.opacity = String(opacity);
       },
     });
 
@@ -49,9 +51,9 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
     <section className={styles.heroOuter} ref={outerRef} id="hero">
       <div className={styles.heroSticky}>
         <CanvasRenderer
+          ref={canvasRendererRef}
           framesRef={framesRef}
           frameCount={frameCount}
-          progress={frameProgress}
         />
         <div className={styles.overlay} />
         <div className={styles.content} ref={contentRef}>
