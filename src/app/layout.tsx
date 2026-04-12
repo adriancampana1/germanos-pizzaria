@@ -126,6 +126,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${cormorant.variable} ${outfit.variable}`}>
+      <meta name="theme-color" content="#F5F5DC"></meta>
       <head>
         <script
           type="application/ld+json"

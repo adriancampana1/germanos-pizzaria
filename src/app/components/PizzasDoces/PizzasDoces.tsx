@@ -1,8 +1,19 @@
 "use client";
 
-import Image from "next/image";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./PizzasDoces.module.css";
+
+function buildSrcSet(src: string) {
+  const base = src.replace(/\.webp$/, "");
+  return `${base}-sm.webp 768w, ${base}-md.webp 1100w, ${src} 2048w`;
+}
+
+const IMG_FILL_STYLE: React.CSSProperties = {
+  position: "absolute",
+  inset: 0,
+  width: "100%",
+  height: "100%",
+};
 
 const DOCES = [
   {
@@ -51,12 +62,15 @@ export default function PizzasDoces() {
           {DOCES.map((pizza) => (
             <div key={pizza.name} className={styles.card} data-animate>
               <div className={styles.cardImageWrap}>
-                <Image
-                  src={pizza.image}
-                  alt={`Pizza ${pizza.name}`}
-                  fill
-                  className={styles.image}
+                <img
+                  src={pizza.image.replace(/\.webp$/, "-md.webp")}
+                  srcSet={buildSrcSet(pizza.image)}
                   sizes="(max-width: 768px) 100vw, 33vw"
+                  alt={`Pizza ${pizza.name}`}
+                  className={styles.image}
+                  loading="lazy"
+                  decoding="async"
+                  style={IMG_FILL_STYLE}
                 />
                 <div className={styles.cardOverlay}>
                   <a

@@ -69,12 +69,13 @@ export default function Header() {
         className={`${styles.header} ${scrolled ? styles.headerScrolled : ""}`}
       >
         <Image
-          src="/images/germanos.png"
+          src="/images/germanos.webp"
           alt="Germano's Pizzaria"
-          width={120}
-          height={40}
+          width={240}
+          height={239}
           className={styles.logo}
-          preload
+          priority
+          fetchPriority="high"
         />
         <nav className={styles.nav}>
           {NAV_LINKS.map((link) => (

@@ -24,6 +24,16 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
     if (!isLoaded || !outerRef.current || !contentRef.current) return;
 
     const contentEl = contentRef.current;
+    const setY = gsap.quickSetter(contentEl, "y", "px") as (v: number) => void;
+    const setOpacity = gsap.quickSetter(contentEl, "opacity") as (
+      v: number,
+    ) => void;
+
+    let vh = window.innerHeight;
+    const onResize = () => {
+      vh = window.innerHeight;
+    };
+    window.addEventListener("resize", onResize, { passive: true });
 
     const trigger = ScrollTrigger.create({
       trigger: outerRef.current,
@@ -31,19 +41,17 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
       end: "bottom bottom",
       scrub: true,
       onUpdate: (self) => {
-        progressRef.current = self.progress;
-        canvasRendererRef.current?.setProgress(self.progress);
-
-        // Parallax: text moves up faster than scroll
-        const yOffset = self.progress * -30;
-        const opacity = Math.max(0, 1 - self.progress * 1.5);
-        contentEl.style.transform = `translateY(${yOffset}vh)`;
-        contentEl.style.opacity = String(opacity);
+        const p = self.progress;
+        progressRef.current = p;
+        canvasRendererRef.current?.setProgress(p);
+        setY(p * -0.3 * vh);
+        setOpacity(p >= 2 / 3 ? 0 : 1 - p * 1.5);
       },
     });
 
     return () => {
       trigger.kill();
+      window.removeEventListener("resize", onResize);
     };
   }, [isLoaded]);
 
@@ -59,9 +67,8 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
         <div className={styles.content} ref={contentRef}>
           <h1 className={styles.heading}>
             Germano&apos;s Pizzaria
-            <br />
             <span className={styles.headingSub}>
-              Pizza Artesanal em Ibiporã
+              Pizza Artesanal em Ibipor&atilde;
             </span>
           </h1>
           <p className={styles.tagline}>

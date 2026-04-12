@@ -14,8 +14,8 @@ export interface CanvasRendererHandle {
 // Cap DPR to reduce GPU workload on mobile
 function getCappedDpr(): number {
   const dpr = window.devicePixelRatio || 1;
-  // On mobile (small screens), cap at 1.5 to avoid rendering massive canvas buffers
-  if (window.innerWidth <= 768) return Math.min(dpr, 1.5);
+  // On mobile (small screens), cap at 1 to avoid rendering massive canvas buffers
+  if (window.innerWidth <= 768) return 1;
   return Math.min(dpr, 2);
 }
 
@@ -147,7 +147,6 @@ const CanvasRenderer = forwardRef<CanvasRendererHandle, CanvasRendererProps>(
           width: "calc(100% + 2px)",
           height: "calc(100% + 2px)",
           display: "block",
-          willChange: "transform",
         }}
       />
     );

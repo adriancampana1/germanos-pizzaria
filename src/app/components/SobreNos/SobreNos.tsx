@@ -1,7 +1,6 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import useScrollAnimation from "../../hooks/useScrollAnimation";
@@ -43,12 +42,20 @@ export default function SobreNos() {
         <div className={styles.imageCol} ref={imageRef} data-animate>
           <div className={styles.imageWrapper}>
             <div className={styles.parallaxInner} ref={parallaxImgRef}>
-              <Image
-                src="/images/frente-pizzaria.webp"
-                alt="Fachada da pizzaria Germano's"
-                fill
-                className={styles.image}
+              <img
+                src="/images/frente-pizzaria-md.webp"
+                srcSet="/images/frente-pizzaria-sm.webp 800w, /images/frente-pizzaria-md.webp 1200w, /images/frente-pizzaria.webp 3024w"
                 sizes="(max-width: 768px) 100vw, 55vw"
+                alt="Fachada da pizzaria Germano's"
+                className={styles.image}
+                loading="lazy"
+                decoding="async"
+                style={{
+                  position: "absolute",
+                  inset: 0,
+                  width: "100%",
+                  height: "100%",
+                }}
               />
             </div>
           </div>
