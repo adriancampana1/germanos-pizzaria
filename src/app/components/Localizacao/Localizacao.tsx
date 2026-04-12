@@ -2,10 +2,8 @@
 
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./Localizacao.module.css";
+import { WHATSAPP_LINK, PHONE_LINK, PHONE_DISPLAY } from "../../constants";
 
-const WHATSAPP_LINK =
-  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
-const PHONE = "(43) 99159-3251";
 const MAPS_EMBED =
   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3665.3396823679964!2d-51.056903288407476!3d-23.26710397891566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94eb46d8a195b7cf%3A0xfe6258cba3916b02!2sAv.%20Sen.%20Souza%20Naves%2C%20685%20-%20S%C3%A3o%20Manoel%2C%20Ibipor%C3%A3%20-%20PR%2C%2086200-000!5e0!3m2!1spt-BR!2sbr!4v1775521075362!5m2!1spt-BR!2sbr";
 
@@ -56,8 +54,8 @@ export default function Localizacao() {
 
           <div className={styles.block} data-animate>
             <span className={styles.blockTitle}>Contato</span>
-            <a href="tel:+5543999990000" className={styles.blockLink}>
-              {PHONE}
+            <a href={PHONE_LINK} className={styles.blockLink}>
+              {PHONE_DISPLAY}
             </a>
             <a
               href={WHATSAPP_LINK}

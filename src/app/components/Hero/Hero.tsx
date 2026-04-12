@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CanvasRenderer from "./CanvasRenderer";
 import styles from "./Hero.module.css";
+import { MENU_LINK } from "../../constants";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,7 +77,7 @@ export default function Hero({ framesRef, frameCount, isLoaded }: HeroProps) {
             paix&atilde;o desde a primeira fatia.
           </p>
           <a
-            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            href={MENU_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.ctaButton}

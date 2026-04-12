@@ -2,6 +2,7 @@
 
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./PizzasDoces.module.css";
+import { WHATSAPP_LINK, MENU_LINK } from "../../constants";
 
 function buildSrcSet(src: string) {
   const base = src.replace(/\.webp$/, "");
@@ -32,10 +33,6 @@ const DOCES = [
     image: "/images/ouro-branco.webp",
   },
 ];
-
-const WHATSAPP_LINK =
-  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
-const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
 
 export default function PizzasDoces() {
   const sectionRef = useScrollAnimation();

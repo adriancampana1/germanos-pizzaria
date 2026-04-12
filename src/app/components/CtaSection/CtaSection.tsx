@@ -2,11 +2,12 @@
 
 import useScrollAnimation from "../../hooks/useScrollAnimation";
 import styles from "./CtaSection.module.css";
-
-const WHATSAPP_LINK =
-  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
-const PHONE_LINK = "tel:+5543991593251";
-const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
+import {
+  WHATSAPP_LINK,
+  PHONE_LINK,
+  PHONE_DISPLAY,
+  MENU_LINK,
+} from "../../constants";
 
 export default function CtaSection() {
   const sectionRef = useScrollAnimation();
@@ -62,7 +63,7 @@ export default function CtaSection() {
                 >
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
                 </svg>
-                (43) 99159-3251
+                {PHONE_DISPLAY}
               </a>
             </div>
           </div>

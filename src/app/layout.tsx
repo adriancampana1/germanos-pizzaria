@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import "./globals.css";
+import { PHONE_E164, MENU_LINK } from "./constants";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -76,7 +77,7 @@ const jsonLd = {
   servesCuisine: ["Pizza", "Italian"],
   image: "https://germanospizzaria.com.br/images/og-image.jpg",
   url: "https://germanospizzaria.com.br",
-  telephone: "+55-43-99999-0000",
+  telephone: PHONE_E164,
   priceRange: "$$",
   address: {
     "@type": "PostalAddress",
@@ -107,7 +108,7 @@ const jsonLd = {
       closes: "23:00",
     },
   ],
-  menu: "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora",
+  menu: MENU_LINK,
   acceptsReservations: "No",
   paymentAccepted: "Cash, Credit Card, Debit Card, Pix",
   currenciesAccepted: "BRL",
@@ -130,7 +131,9 @@ export default function RootLayout({
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
       </head>
       <body>{children}</body>

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Image from "next/image";
 import gsap from "gsap";
 import styles from "./Header.module.css";
+import { MENU_LINK } from "../../constants";
 
 const NAV_LINKS = [
   { href: "#especialidades", label: "Especialidades" },
@@ -84,7 +85,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            href={MENU_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.navCta}
@@ -118,7 +119,7 @@ export default function Header() {
             </a>
           ))}
           <a
-            href="https://pedido.anota.ai/loja/germanos-pizzaria-ibipora"
+            href={MENU_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className={styles.mobileCta}

@@ -2,9 +2,7 @@
 
 import { useState, useEffect } from "react";
 import styles from "./FloatingCta.module.css";
-
-const WHATSAPP_LINK =
-  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
+import { WHATSAPP_LINK } from "../../constants";
 
 export default function FloatingCta() {
   const [visible, setVisible] = useState(false);

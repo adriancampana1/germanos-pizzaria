@@ -1,9 +1,12 @@
 import styles from "./Footer.module.css";
-
-const WHATSAPP_LINK =
-  "https://wa.me/5543991593251?text=Olá! Vim pelo site e gostaria de fazer um pedido.";
-const PHONE_LINK = "tel:+5543991593251";
-const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
+import {
+  WHATSAPP_LINK,
+  PHONE_LINK,
+  PHONE_DISPLAY,
+  MENU_LINK,
+  INSTAGRAM_LINK,
+  FACEBOOK_LINK,
+} from "../../constants";
 
 export default function Footer() {
   return (
@@ -44,7 +47,7 @@ export default function Footer() {
               WhatsApp
             </a>
             <a href={PHONE_LINK} className={styles.footerLink}>
-              (43) 99159-3251
+              {PHONE_DISPLAY}
             </a>
             <a
               href={MENU_LINK}
@@ -59,7 +62,7 @@ export default function Footer() {
           <div className={styles.column}>
             <span className={styles.columnTitle}>Redes Sociais</span>
             <a
-              href="https://www.instagram.com/germanospizzariaibipora/"
+              href={INSTAGRAM_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.footerLink}
@@ -67,7 +70,7 @@ export default function Footer() {
               Instagram
             </a>
             <a
-              href="https://www.facebook.com/p/Germanos-Pizzaria-Ibipor%C3%A3-61555137404190/"
+              href={FACEBOOK_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.footerLink}
