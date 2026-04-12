@@ -31,12 +31,12 @@ export const metadata: Metadata = {
   },
   title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
   description:
-    "A melhor pizza artesanal de Ibiporã, Paraná. Forno a lenha, massa artesanal e ingredientes selecionados. Peça pelo WhatsApp ou iFood. Av. Senador Souza Naves, 685.",
+    "A melhor pizza artesanal de Ibiporã, Paraná. Massa artesanal e ingredientes selecionados. Peça pelo WhatsApp ou iFood. Av. Senador Souza Naves, 685.",
   keywords: [
     "pizzaria Ibiporã",
     "pizza artesanal",
     "Germano's Pizzaria",
-    "pizza forno a lenha",
+    "pizzaria aberta agora",
     "delivery pizza Ibiporã",
     "pizzaria Paraná",
     "melhor pizza Ibiporã",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
     description:
-      "A melhor pizza artesanal de Ibiporã. Forno a lenha, massa artesanal e ingredientes selecionados.",
+      "A melhor pizza artesanal de Ibiporã. Massa artesanal e ingredientes selecionados.",
     url: "https://germanospizzaria.com.br",
     siteName: "Germano's Pizzaria",
     type: "website",
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Germano's Pizzaria — Pizza Artesanal em Ibiporã, PR",
     description:
-      "A melhor pizza artesanal de Ibiporã. Forno a lenha, massa artesanal e ingredientes selecionados.",
+      "A melhor pizza artesanal de Ibiporã. Massa artesanal e ingredientes selecionados.",
     images: ["/images/og-image.jpg"],
   },
 };
@@ -73,7 +73,7 @@ const jsonLd = {
   "@type": "Restaurant",
   name: "Germano's Pizzaria",
   description:
-    "A melhor pizza artesanal de Ibiporã, Paraná. Forno a lenha, massa artesanal e ingredientes selecionados.",
+    "A melhor pizza artesanal de Ibiporã, Paraná. Massa artesanal e ingredientes selecionados.",
   servesCuisine: ["Pizza", "Italian"],
   image: "https://germanospizzaria.com.br/images/og-image.jpg",
   url: "https://germanospizzaria.com.br",
