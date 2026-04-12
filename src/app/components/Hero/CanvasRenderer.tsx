@@ -87,6 +87,8 @@ const CanvasRenderer = forwardRef<CanvasRendererHandle, CanvasRendererProps>(
       if (!canvas) return;
       const ctx = canvas.getContext("2d", { alpha: false });
       if (!ctx) return;
+      ctx.imageSmoothingEnabled = true;
+      ctx.imageSmoothingQuality = "high";
       ctxRef.current = ctx;
 
       let resizeTimer: ReturnType<typeof setTimeout>;
