@@ -43,8 +43,8 @@ export default function SobreNos() {
           <div className={styles.imageWrapper}>
             <div className={styles.parallaxInner} ref={parallaxImgRef}>
               <img
-                src="/images/frente-pizzaria-md.webp"
-                srcSet="/images/frente-pizzaria-sm.webp 800w, /images/frente-pizzaria-md.webp 1200w, /images/frente-pizzaria.webp 3024w"
+                src="/images/frente-pizzaria-sm.webp"
+                srcSet="/images/frente-pizzaria-sm.webp 1200w, /images/frente-pizzaria.webp 3024w"
                 sizes="(max-width: 768px) 100vw, 55vw"
                 alt="Fachada da pizzaria Germano's"
                 className={styles.image}

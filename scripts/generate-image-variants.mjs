@@ -21,16 +21,14 @@ const FOOD = [
 ].map((slug) => ({
   src: `${slug}.webp`,
   outputs: [
-    { name: `${slug}-sm.webp`, width: 768, quality: 82 },
-    { name: `${slug}-md.webp`, width: 1100, quality: 80 },
+    { name: `${slug}-sm.webp`, width: 1200, quality: 72 },
   ],
 }));
 
 const HERO = {
   src: "frente-pizzaria.webp",
   outputs: [
-    { name: "frente-pizzaria-sm.webp", width: 800, quality: 78 },
-    { name: "frente-pizzaria-md.webp", width: 1200, quality: 75 },
+    { name: "frente-pizzaria-sm.webp", width: 1200, quality: 72 },
   ],
 };
 
@@ -52,7 +50,7 @@ async function run() {
       const outPath = path.join(ROOT, out.name);
       await sharp(srcPath)
         .resize({ width: out.width, withoutEnlargement: true })
-        .webp({ quality: out.quality, effort: 6 })
+        .webp({ quality: out.quality, effort: 6, smartSubsample: true })
         .toFile(outPath);
       const { size } = await stat(outPath);
       console.log(`  ${out.name.padEnd(34)} ${out.width.toString().padStart(4)}w  ${(size / 1024).toFixed(1)} KB`);
