@@ -135,6 +135,7 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
+        <script defer src="https://analytics.adriancampana.cloud/script.js" data-website-id="ac130301-0471-4e26-b2ac-cc9db84ee7cd"></script>
       </head>
       <body>{children}</body>
     </html>
