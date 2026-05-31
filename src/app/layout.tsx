@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { PHONE_E164, MENU_LINK } from "./constants";
 
@@ -135,9 +136,15 @@ export default function RootLayout({
             __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
           }}
         />
-        <script defer src="https://analytics.adriancampana.cloud/script.js" data-website-id="1585b679-1b24-4d1a-8477-b44be55cc2db"></script>
       </head>
-      <body>{children}</body>
+      <body>
+        <Script 
+          src="https://analytics.adriancampana.cloud/script.js" 
+          data-website-id="1585b679-1b24-4d1a-8477-b44be55cc2db"
+          strategy="afterInteractive"
+        />
+        {children}
+      </body>
     </html>
   );
 }
