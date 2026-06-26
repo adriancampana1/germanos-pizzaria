@@ -30,7 +30,7 @@ Rejected alternatives:
   official component; no benefit here.
 
 The GA Measurement ID is **hardcoded**, not stored in an env var. Rationale:
-- The ID (`G-KY23ZL5PYM`) is public — it ships in the static client JS regardless.
+- The ID (`G-WT7KD8MSJK`) is public — it ships in the static client JS regardless.
 - Consistent with the existing hardcoded Umami website ID in the same file.
 - A `NEXT_PUBLIC_GA_ID` env var would require a Docker build `ARG`/`ENV` plus a
   GitHub Actions build-arg, for zero security benefit.
@@ -40,7 +40,7 @@ The GA Measurement ID is **hardcoded**, not stored in an env var. Rationale:
 1. Install dependency matched to Next 16: `npm i @next/third-parties@16`.
 2. In `src/app/layout.tsx`:
    - `import { GoogleAnalytics } from "@next/third-parties/google"`.
-   - Render `<GoogleAnalytics gaId="G-KY23ZL5PYM" />` inside `<html>`, after
+   - Render `<GoogleAnalytics gaId="G-WT7KD8MSJK" />` inside `<html>`, after
      `<body>` (per official docs). Leave the existing Umami `<Script>` untouched.
 
 ## Verification
