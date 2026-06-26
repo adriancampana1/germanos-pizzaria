@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Outfit } from "next/font/google";
 import Script from "next/script";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import { PHONE_E164, MENU_LINK } from "./constants";
 
@@ -145,6 +146,7 @@ export default function RootLayout({
         />
         {children}
       </body>
+      <GoogleAnalytics gaId="G-KY23ZL5PYM" />
     </html>
   );
 }
