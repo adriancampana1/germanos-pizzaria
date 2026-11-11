@@ -6,7 +6,7 @@ export const PHONE_E164 = `+${PHONE_RAW}`;
 
 export const WHATSAPP_LINK = `https://wa.me/${PHONE_RAW}?text=Olá! Vim pelo site e gostaria de fazer um pedido.`;
 
-export const MENU_LINK = "https://pedido.anota.ai/loja/germanos-pizzaria-ibipora";
+export const MENU_LINK = "https://germanospizzaria.mandarpedido.com/mobile/home";
 
 export const INSTAGRAM_LINK = "https://www.instagram.com/germanospizzariaibipora/";
 export const FACEBOOK_LINK = "https://www.facebook.com/p/Germanos-Pizzaria-Ibipor%C3%A3-61555137404190/";
