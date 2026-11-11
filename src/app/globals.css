@@ -67,6 +67,13 @@ body::after {
   background-size: 256px 256px;
 }
 
+/* A fixed full-screen blended layer is costly on weak mobile GPUs */
+@media (max-width: 768px) {
+  body::after {
+    display: none;
+  }
+}
+
 /* Shared section label style */
 .section-label {
   display: flex;

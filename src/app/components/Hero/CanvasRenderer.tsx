@@ -1,158 +1,116 @@
 "use client";
 
-import { useRef, useEffect, useCallback, useImperativeHandle, forwardRef } from "react";
-
-interface CanvasRendererProps {
-  framesRef: React.RefObject<ImageBitmap[]>;
-  frameCount: number;
-}
+import { useRef, useEffect, useImperativeHandle, forwardRef } from "react";
+import { FRAME_COUNT, loadFrameSequence, type Frame } from "./frameSequence";
+import styles from "./Hero.module.css";
 
 export interface CanvasRendererHandle {
+  /** 0..1 position in the frame sequence. Cheap to call on every tick. */
   setProgress: (progress: number) => void;
 }
 
-// Cap DPR to reduce GPU workload on mobile
-function getCappedDpr(): number {
-  const dpr = window.devicePixelRatio || 1;
-  // On mobile (small screens), cap at 1 to avoid rendering massive canvas buffers
-  if (window.innerWidth <= 768) return 1;
-  return Math.min(dpr, 2);
+// The source frames are 1280px wide; a bigger backing store only adds fill cost.
+const MAX_BACKING_WIDTH = 1920;
+
+function nearestLoaded(frames: (Frame | undefined)[], target: number): number {
+  for (let d = 0; d < FRAME_COUNT; d++) {
+    if (frames[target - d]) return target - d;
+    if (frames[target + d]) return target + d;
+  }
+  return -1;
 }
 
-const CanvasRenderer = forwardRef<CanvasRendererHandle, CanvasRendererProps>(
-  function CanvasRenderer({ framesRef, frameCount }, ref) {
+const CanvasRenderer = forwardRef<CanvasRendererHandle>(
+  function CanvasRenderer(_props, ref) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
-    const currentFrameRef = useRef(-1);
-    const rafRef = useRef<number>(0);
-    const pendingFrameRef = useRef<number | null>(null);
-    const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
-    const dprRef = useRef(1);
+    const apiRef = useRef<CanvasRendererHandle>({ setProgress: () => {} });
 
-    const drawFrame = useCallback(
-      (index: number) => {
-        const canvas = canvasRef.current;
-        const ctx = ctxRef.current;
-        const img = framesRef.current?.[index];
-        if (!canvas || !ctx || !img) return;
-
-        const dpr = dprRef.current;
-        const vw = canvas.width / dpr;
-        const vh = canvas.height / dpr;
-
-        // ImageBitmap uses .width/.height, not .naturalWidth/.naturalHeight
-        const iw = img.width;
-        const ih = img.height;
-        const scale = Math.max(vw / iw, vh / ih);
-        const dw = iw * scale;
-        const dh = ih * scale;
-        const dx = (vw - dw) / 2;
-        const dy = (vh - dh) / 2;
-
-        ctx.save();
-        ctx.setTransform(1, 0, 0, 1, 0, 0);
-        ctx.fillStyle = "#F5F5DC";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.restore();
-
-        ctx.drawImage(img, dx, dy, dw, dh);
-      },
-      [framesRef]
+    useImperativeHandle(
+      ref,
+      () => ({ setProgress: (p) => apiRef.current.setProgress(p) }),
+      [],
     );
 
-    // Imperative progress setter — no React re-render
-    useImperativeHandle(ref, () => ({
-      setProgress(progress: number) {
-        const index = Math.max(0, Math.min(Math.floor(progress * frameCount), frameCount - 1));
-        if (index === currentFrameRef.current) return;
-        if (!framesRef.current?.[index]) return;
-
-        pendingFrameRef.current = index;
-        if (!rafRef.current) {
-          rafRef.current = requestAnimationFrame(() => {
-            rafRef.current = 0;
-            const idx = pendingFrameRef.current;
-            if (idx !== null && idx !== currentFrameRef.current) {
-              currentFrameRef.current = idx;
-              drawFrame(idx);
-            }
-            pendingFrameRef.current = null;
-          });
-        }
-      },
-    }), [frameCount, framesRef, drawFrame]);
-
-    // Resize canvas — debounced to avoid excessive recalculation
     useEffect(() => {
       const canvas = canvasRef.current;
-      if (!canvas) return;
-      const ctx = canvas.getContext("2d", { alpha: false });
-      if (!ctx) return;
-      ctx.imageSmoothingEnabled = true;
-      ctx.imageSmoothingQuality = "high";
-      ctxRef.current = ctx;
+      const ctx = canvas?.getContext("2d", { alpha: false });
+      if (!canvas || !ctx) return;
 
-      let resizeTimer: ReturnType<typeof setTimeout>;
+      const frames: (Frame | undefined)[] = [];
+      let target = 0;
+      let drawn = -1;
+      let raf = 0;
+
+      function draw() {
+        raf = 0;
+        const index = nearestLoaded(frames, target);
+        if (index < 0 || index === drawn) return;
+        const img = frames[index]!;
+        const iw = "naturalWidth" in img ? img.naturalWidth : img.width;
+        const ih = "naturalHeight" in img ? img.naturalHeight : img.height;
+        const scale = Math.max(canvas!.width / iw, canvas!.height / ih);
+        const dw = iw * scale;
+        const dh = ih * scale;
+        ctx!.drawImage(
+          img,
+          (canvas!.width - dw) / 2,
+          (canvas!.height - dh) / 2,
+          dw,
+          dh,
+        );
+        if (drawn < 0) canvas!.dataset.ready = "true";
+        drawn = index;
+      }
+
+      function schedule() {
+        if (!raf) raf = requestAnimationFrame(draw);
+      }
 
       function resize() {
-        const dpr = getCappedDpr();
-        dprRef.current = dpr;
-        canvas!.width = window.innerWidth * dpr;
-        canvas!.height = window.innerHeight * dpr;
-        canvas!.style.width = window.innerWidth + "px";
-        canvas!.style.height = window.innerHeight + "px";
-        ctx!.setTransform(1, 0, 0, 1, 0, 0);
-        ctx!.scale(dpr, dpr);
-        if (currentFrameRef.current >= 0) drawFrame(currentFrameRef.current);
+        const cssW = canvas!.clientWidth;
+        const cssH = canvas!.clientHeight;
+        if (!cssW || !cssH) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const ratio = Math.min(dpr, MAX_BACKING_WIDTH / cssW);
+        const w = Math.round(cssW * ratio);
+        const h = Math.round(cssH * ratio);
+        if (canvas!.width === w && canvas!.height === h) return;
+        canvas!.width = w;
+        canvas!.height = h;
+        ctx!.imageSmoothingEnabled = true;
+        ctx!.imageSmoothingQuality = "high";
+        drawn = -1;
+        draw();
       }
 
+      const observer = new ResizeObserver(resize);
+      observer.observe(canvas);
       resize();
 
-      function onResize() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(resize, 150);
-      }
-
-      window.addEventListener("resize", onResize);
-      return () => {
-        window.removeEventListener("resize", onResize);
-        clearTimeout(resizeTimer);
+      apiRef.current = {
+        setProgress(progress) {
+          const index = Math.max(
+            0,
+            Math.min(Math.round(progress * (FRAME_COUNT - 1)), FRAME_COUNT - 1),
+          );
+          if (index === target) return;
+          target = index;
+          schedule();
+        },
       };
-    }, [drawFrame]);
 
-    // Draw first frame as soon as it's available
-    useEffect(() => {
-      if (currentFrameRef.current >= 0) return;
-      const checkFirst = setInterval(() => {
-        if (framesRef.current?.[0]) {
-          currentFrameRef.current = 0;
-          drawFrame(0);
-          clearInterval(checkFirst);
-        }
-      }, 50);
-      return () => clearInterval(checkFirst);
-    }, [framesRef, drawFrame]);
+      const cancelLoading = loadFrameSequence(frames, schedule);
 
-    // Cleanup pending rAF on unmount
-    useEffect(() => {
       return () => {
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+        observer.disconnect();
+        if (raf) cancelAnimationFrame(raf);
+        apiRef.current = { setProgress: () => {} };
+        cancelLoading();
       };
     }, []);
 
-    return (
-      <canvas
-        ref={canvasRef}
-        style={{
-          position: "absolute",
-          top: "-1px",
-          left: "-1px",
-          width: "calc(100% + 2px)",
-          height: "calc(100% + 2px)",
-          display: "block",
-        }}
-      />
-    );
-  }
+    return <canvas ref={canvasRef} className={styles.canvas} aria-hidden />;
+  },
 );
 
 export default CanvasRenderer;
