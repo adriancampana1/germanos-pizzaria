@@ -15,8 +15,9 @@ export default function useScrollAnimation() {
 
     const children = el.querySelectorAll("[data-animate]");
     if (children.length === 0) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    gsap.from(children, {
+    const tween = gsap.from(children, {
       y: 40,
       opacity: 0,
       stagger: 0.15,
@@ -30,9 +31,8 @@ export default function useScrollAnimation() {
     });
 
     return () => {
-      ScrollTrigger.getAll().forEach((t) => {
-        if (t.trigger === el) t.kill();
-      });
+      tween.scrollTrigger?.kill();
+      tween.kill();
     };
   }, []);
 

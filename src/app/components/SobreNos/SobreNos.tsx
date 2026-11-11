@@ -15,6 +15,7 @@ export default function SobreNos() {
 
   useEffect(() => {
     if (!imageRef.current || !parallaxImgRef.current) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
     const tl = gsap.timeline({
       scrollTrigger: {
